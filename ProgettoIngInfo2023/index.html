@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head profile="http://www.w3.org/2005/10/profile">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Virtual Tabletop</title>
+        <link rel="icon" type="image/png" href="img/polimi.png">
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+            
+            <div class="navBar">
+                <a onclick="showPage(play)">Play</a>
+                <a onclick="showPage(lobby)">Lobby</a>
+                <a onclick="showPage(contact)">Contact</a>
+                <a onclick="showPage(info)">Info</a>
+                <a onclick="showPage(help)">Help</a>
+            </div>
+
+            <div class="content">
+
+                <div class="box play">
+                    <a><button onclick="showLogin(create)">Create a new game</button></a>
+                    <div class="divider">OR</div>
+                    <a><button onclick="showLogin(join)">Join an existing game</button></a>
+                </div>
+
+                <div class="box createGame">
+                    <div class="back">
+                        <a onclick="back(play)"><i class="bi bi-arrow-left"></i></a>
+                    </div>
+                    <div class="error">
+                    </div>
+                    <form onsubmit="return false" autocomplete="off" novalidate>
+                        <div class="inputBox">
+                            <i class="bi bi-person"></i>
+                            <input type="text" class="createNickname" required>
+                            <label>Nickname</label>
+                        </div>
+                        <div class="inputBox">
+                            <i class="bi bi-lock"></i>
+                            <input type="text" class="createPassword" required>
+                            <label>Password</label>
+                        </div>
+                        <div class="usePassword">
+                            <span><input type="checkbox" class="createUsePassword" checked>Use password</span>
+                        </div>
+                    </form>
+                    <a><button class="createGameBtn">Create</button></a>
+                </div>
+
+                <div class="box joinGame">
+                    <div class="back">
+                        <a onclick="back(play)"><i class="bi bi-arrow-left"></i></a>
+                    </div>
+                    <div class="error">
+                    </div>
+                    <form autocomplete="off" novalidate>
+                        <div class="inputBox">
+                            <i class="bi bi-person"></i>
+                            <input type="text" class="joinNickname" required>
+                            <label>Nickname</label>
+                        </div>
+                        <div class="inputBox">
+                            <i class="bi bi-qr-code-scan"></i>
+                            <input type="text" class="joinRoomId" required>
+                            <label>Room Id</label>
+                        </div>
+                        <div class="inputBox">
+                            <i class="bi bi-lock"></i>
+                            <input type="text" class="joinPassword" required>
+                            <label>Password</label>
+                        </div>
+                    </form>
+                    <a><button class="joinGameBtn">Join</button></a>
+                </div>
+
+                <div class="box lobby">
+                </div>
+
+                <div class="box lobbyJoinWithPassword">
+                    <div class="back">
+                        <a onclick="back(lobby)"><i class="bi bi-arrow-left"></i></a>
+                    </div>
+                    <div class="error">
+                    </div>
+                    <form autocomplete="off" novalidate>
+                        <div class="inputBox">
+                            <i class="bi bi-person"></i>
+                            <input type="text" class="lobbyNickname" required>
+                            <label>Nickname</label>
+                        </div>
+                        <div class="inputBox">
+                            <i class="bi bi-lock"></i>
+                            <input type="text" class="lobbyPassword" required>
+                            <label>Password</label>
+                        </div>
+                    </form>
+                    <a><button class="lobbyJoinWithPasswordBtn">Join</button></a>
+                </div>
+
+                <div class="box lobbyJoinWithoutPassword">
+                    <div class="back">
+                        <a onclick="back(lobby)"><i class="bi bi-arrow-left"></i></a>
+                    </div>
+                    <div class="error">
+                    </div>
+                    <form autocomplete="off" novalidate>
+                        <div class="inputBox">
+                            <i class="bi bi-person"></i>
+                            <input type="text" class="lobbyNicknameWithoutPassword" required>
+                            <label>Nickname</label>
+                            <input hidden>
+                        </div>
+                    </form>
+                    <a><button class="lobbyJoinWithoutPasswordBtn">Join</button></a>
+                </div>
+
+                <div class="box contact">
+                    <h2>Contact Us</h2>
+                    <div class="error">
+                    </div>
+                    <form autocomplete="off" novalidate>
+                        <div class="inputBox">
+                            <i class="bi bi-person"></i>
+                            <input type="text" class="contactName" required>
+                            <label>Name</label>
+                        </div>
+                        <div class="inputBox">
+                            <i class="bi bi-envelope"></i>
+                            <input type="text" class="contactEmail" required>
+                            <label>Email</label>
+                        </div>
+                        <div class="inputBox">
+                            <i class="bi bi-telephone"></i>
+                            <input type="tel" class="contactPhone" required>
+                            <label>Phone</label>
+                        </div>
+                        <div class="inputBox area">
+                            <textarea name="" class="contactMessage" cols="30" rows="10" required></textarea>
+                            <label class="message">Message</label>
+                        </div>
+                    </form>
+                    <a><button class="send">Send</button></a>
+                </div>
+
+                <div class="box info">
+
+                    <h2>Simple Virtual Tabletop Environment</h2><br>
+                    <div class="text">
+                        Project for the course "Progetto di Ingegneria Informatica" 2022-2023 held by professor <a href="https://fugini.faculty.polimi.it/" target="_blank">Mariagrazia Fugini</a> at Politecnico di Milano.<br>
+                        The project was proposed by professor <a href="https://agosta.faculty.polimi.it/doku.html" target="_blank">Giovanni Agosta</a> with the documentation and rules that can be found at <a href="https://pii.dei.polimi.it/1822-2/" target="_blank">this page</a>.<br>
+                        The original project created by Alessandro Curà in 2022 can be found at this <a href="https://github.com/AlessandroCura/ProgettoIngInfo2022" target="_blank">GitHub page</a>.
+                    </div>
+                    <div class="img">
+                        <a href="https://www.polimi.it/" target="_blank"><img src="img/logo.png" class="logo"></a>
+                    </div>
+
+                    <div class="info1">
+                        <h3>Current features:</h3>
+                        <ul>
+                            <li>customizable game board</li>
+                            <li>customizable tokens</li>
+                            <li>personal tokens</li>
+                            <li>4 availble grids to choose</li>
+                            <li>chat and dice rolls</li>
+                            <li>game saver (using LocalStorage)</li>
+                        </ul>
+                    </div>
+                    <div class="info2">
+                        <h3>Possible upgrades:</h3>
+                        <ul>
+                            <li>game import/export in a file or a database</li>
+                            <li>more responsive graphics (for mobile/tablet)</li>
+                            <li>more game functionality</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="box help">
+                    <h2>How to play:</h2><br>
+                    In the <a onclick="showPage(play)" id="help">Play</a> section, create a new game or join an existing one using the room id and password.<br>
+                    In the <a onclick="showPage(lobby)" id="help">Lobby</a> section, you can look at all current games and join them with or without a password.<br>
+                    Inside the game you can change the grid type and your profile icon, place and remove only your tokens and use the chat to send messages or to roll a dice.<br>
+                    You can also add more tokens or change the background image using Google Drive. Simply upload the images you desire to use into a public Google Drive folder, then right click the image you need and click share, then click "copy link" and paste it into the text field you can find to the right side of the screen, then select whether you want it to be the new background or a new token.
+                </div>
+
+            </div>
+
+            <div class="game">
+                <div class="left">
+                    
+                    <div class="profile">
+                        <div class="profileIcon">
+                        </div>
+                        <div class="profileNick">
+                        </div>
+                    </div>
+
+                    <div class="partyList">
+                    </div>
+
+                    <div class="chatContainer">
+                        <div id="chatHistory">
+                            <div style="color: gray;">
+                                Diceroll example: /d20 + 4
+                            </div>
+                            <div style="color: gray;">
+                                Diceroll example: /D6 - 1
+                            </div>
+                        </div>
+                        <div class="inputField">
+                            <input type="text" id="textField">
+                            <input type="submit" id="sendText" value="send">
+                        </div>
+                    </div>
+
+                    <div id="roomInfo">
+                    </div>
+
+                    <div class="exit">
+                        <input type="button" class="quit" value="Exit">
+                    </div>
+
+                </div>
+                <div class="center">
+                    <div class="gameBoardImage">
+                        <img src = "" id="backgroundImage">
+                    </div>
+                    <div class="gameboard">
+                    </div>
+
+                </div>
+                <div class="right">
+
+                    <div id="masterCommands">
+                        <input type="button" class="small" value="small">
+                        <input type="button" class="medium" value="medium">
+                        <input type="button" class="large" value="large">
+                        <input type="button" class="hexa" value="hexagon">
+                    </div>
+
+                    <div class="backgroundChanger">
+                        <input type="text" id="urlInput" placeholder="Insert image url...">
+                        <input type="button" id="urlSubmitBg" value="new Background">
+                        <input type="button" id="urlSubmitToken" value="new Token">
+                        <div id="drive">
+                            <a href="https://drive.google.com/drive" target="_blank" draggable="false">
+                                <img src="img/drive.jpg" draggable="false">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="trashToken">
+                        <img src="img/trash.png" draggable="false">
+                    </div>
+
+                    <div class="tokenContainer" id="tokenContainer">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <template id="manualDelete">
+            <swal-title>
+                <span style="color: red">This game has been deleted.</span>
+            </swal-title>
+            <swal-html>
+                You'll return to the main page.
+            </swal-html>
+            <swal-icon type="warning" color="red"></swal-icon>
+            <swal-button type="confirm" color="red">
+                Take me home
+            </swal-button>
+        </template>
+
+        <template id="quitGame">
+            <swal-title>
+                <span style="color: black">Are you sure you want to leave this game?</span>
+            </swal-title>
+            <swal-html>
+                Your chat messages and tokens will still be stored in the game.
+            </swal-html>
+            <swal-button type="confirm" color="green">
+                Quit game
+            </swal-button>
+            <swal-button type="cancel" color="red">
+                Cancel
+            </swal-button>
+        </template>
+
+        <script src="index.js"></script>
+    </body>
+</html>
