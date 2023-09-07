@@ -16,5 +16,5 @@ The [documentation](Documentation.pdf) (in italian) describes the interaction be
 <ul>
   <li>game import/export in a file or a database</li>
   <li>more responsive graphics (for mobile/tablet)</li>
-  <li>more game functionality</li>
+  <li>more game functionalities</li>
 </ul>
